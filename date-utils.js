@@ -29,6 +29,7 @@ const getStartingWeekTime = () => {
   
   startingDay.setDate(startingDay.getDate() - (DEFAULT_STARTING_WEEK_DAY - currentWeekDay));
   startingDay.setHours(00, 00, 00, 00);
+  
   return startingDay.getTime();
 };
 
@@ -42,8 +43,8 @@ const getFridayLoader = () => {
   const percentageToFridayFromToday = (todayTime - startingWeekTime) / (fridayTime - startingWeekTime) * 100;
   
   return {
-    differenceInDays,
-    differenceInTime,
-    percentageToFridayFromToday
+    differenceInDays: differenceInDays < 0 ? differenceInDays : 0,
+    differenceInTime: differenceInTime < 0 ? differenceInTime : 0,
+    percentageToFridayFromToday: percentageToFridayFromToday > 100 ? 100 : percentageToFridayFromToday
   };
 };
