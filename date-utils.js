@@ -18,7 +18,7 @@ const getFridayDate = ({startingFridayHours = DEFAULT_FRIDAY_HOURS, startingFrid
   const fridayDate = new Date();
   
   fridayDate.setDate(currentMonthDay + (5 - currentWeekDay));
-  fridayDate.setHours(startingFridayHours, startingFridayMinutes, 00);
+  fridayDate.setHours(startingFridayHours, startingFridayMinutes, 00, 00);
   
   return fridayDate;
 };
@@ -28,7 +28,7 @@ const getStartingWeekTime = () => {
   const { currentWeekDay } = getCurrentDay();
   
   startingDay.setDate(startingDay.getDate() - (DEFAULT_STARTING_WEEK_DAY - currentWeekDay));
-  startingDay.setHours(00, 00, 00);
+  startingDay.setHours(00, 00, 00, 00);
   return startingDay.getTime();
 };
 
