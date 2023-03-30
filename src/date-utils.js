@@ -1,5 +1,5 @@
 const DEFAULT_FRIDAY_HOURS = 18;
-const DEFAULT_FRIDAY_MINUTES = 00;
+const DEFAULT_FRIDAY_MINUTES = '00';
 const MILLISECONDS_IN_A_DAY = (1000 * 60 * 60 * 24);
 const DEFAULT_STARTING_WEEK_DAY = 1;
 
@@ -18,7 +18,7 @@ const getFridayDate = ({startingFridayHours = DEFAULT_FRIDAY_HOURS, startingFrid
   const fridayDate = new Date();
   
   fridayDate.setDate(currentMonthDay + (5 - currentWeekDay));
-  fridayDate.setHours(startingFridayHours, startingFridayMinutes, 00, 00);
+  fridayDate.setHours(startingFridayHours, startingFridayMinutes, '00', '00');
   
   return fridayDate;
 };
@@ -28,23 +28,40 @@ const getStartingWeekTime = () => {
   const { currentWeekDay } = getCurrentDay();
   
   startingDay.setDate(startingDay.getDate() - (DEFAULT_STARTING_WEEK_DAY - currentWeekDay));
-  startingDay.setHours(00, 00, 00, 00);
+  startingDay.setHours('00', '00', '00', '00');
   
   return startingDay.getTime();
 };
 
-const getFridayLoader = () => {
+export const getFridayLoader = () => {
   const todayTime = new Date().getTime();
   const fridayTime = getFridayDate({}).getTime();
-  const startingWeekTime = getStartingWeekTime();
+  // const startingWeekTime = getStartingWeekTime();
   
   const differenceInTime = fridayTime - todayTime;
   const differenceInDays = differenceInTime / MILLISECONDS_IN_A_DAY;
-  const percentageToFridayFromToday = (todayTime - startingWeekTime) / (fridayTime - startingWeekTime) * 100;
+  const percentageToFridayFromToday = (todayTime / fridayTime) * 100;
+
+  if (differenceInTime < 0) {
+    return {
+      differenceInDays: 0,
+      differenceInTime: 0,
+      percentageToFridayFromToday: 100,
+      todayTime,
+      fridayTime
+    };
+  }
   
   return {
-    differenceInDays: differenceInDays < 0 ? differenceInDays : 0,
-    differenceInTime: differenceInTime < 0 ? differenceInTime : 0,
-    percentageToFridayFromToday: percentageToFridayFromToday > 100 ? 100 : percentageToFridayFromToday
+    differenceInDays,
+    differenceInTime,
+    percentageToFridayFromToday,
+    todayTime,
+    fridayTime
   };
+  // return {
+  //   differenceInDays: differenceInDays < 0 ? differenceInDays : 0,
+  //   differenceInTime: differenceInTime < 0 ? differenceInTime : 0,
+  //   percentageToFridayFromToday: percentageToFridayFromToday > 100 ? 100 : percentageToFridayFromToday
+  // };
 };
