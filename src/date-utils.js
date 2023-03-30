@@ -40,7 +40,7 @@ export const getFridayLoader = () => {
   
   const differenceInTime = fridayTime - todayTime;
   const differenceInDays = differenceInTime / MILLISECONDS_IN_A_DAY;
-  const percentageToFridayFromToday = (todayTime / fridayTime) * 100;
+  const percentageToFridayFromToday = (todayTime / fridayTime);
 
   if (differenceInTime < 0) {
     return {
