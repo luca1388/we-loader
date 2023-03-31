@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Weekend loader</h1>
-        <label for="weekend">Friday is almost here...</label>
+        <label for="weekend">{ fridayLoader.differenceInTime === 0 ? `TGIF!` : `Friday is almost here...`}</label>
         <progress
           id="weekend"
           max={fridayLoader.fridayTime}
