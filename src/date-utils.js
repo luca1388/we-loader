@@ -27,7 +27,7 @@ const getStartingWeekTime = () => {
   const startingDay = new Date();
   const { currentWeekDay } = getCurrentDay();
   
-  startingDay.setDate(startingDay.getDate() - (DEFAULT_STARTING_WEEK_DAY - currentWeekDay));
+  startingDay.setDate(startingDay.getDate() - Math.abs(DEFAULT_STARTING_WEEK_DAY - currentWeekDay));
   startingDay.setUTCHours(0, 0, 0, 0);
   
   return startingDay.getTime();
