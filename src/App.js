@@ -13,12 +13,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Weekend loader - in progress</h1>
+        <h1>Weekend loader</h1>
         <label for="weekend">{ fridayLoader.differenceInTime === 0 ? `TGIF!` : `Friday is almost here...`}</label>
         <progress
           id="weekend"
-          max={fridayLoader.fridayTime}
-          value={fridayLoader.todayTime}
+          max={1}
+          value={fridayLoader.percentageToFridayFromToday}
         >
           {percentage}
         </progress>
