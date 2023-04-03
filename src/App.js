@@ -7,16 +7,19 @@ const REFRESH_INTERVAL = 10000;
 
 function App() {
   const [ratio, setRatio] = useState(0);
-  useInterval(() => {
+
+  const computeCurrentRatio = () => {
     const fridayLoader = getFridayLoader();
     setRatio(fridayLoader.percentageToFridayFromToday);
+  };
 
+  useInterval(() => {
+    computeCurrentRatio();
   }, REFRESH_INTERVAL);
 
   useEffect(() => {
-    const fridayLoader = getFridayLoader();
-    setRatio(fridayLoader.percentageToFridayFromToday);
-  }, []);
+    computeCurrentRatio();
+  }, [computeCurrentRatio]);
 
   const getPercentage = useCallback(() => {
     return new Intl.NumberFormat("default", {
