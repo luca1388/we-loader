@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { getFridayLoader } from "./date-utils";
 import useInterval from "./hooks/useInterval";
