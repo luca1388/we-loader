@@ -1,0 +1,25 @@
+{
+    "weekendMessages": {
+        "firstHalf": [
+            "Please wait while we are loading your weekend ...",
+            "Everyday is almost friday, but not today :(",
+            "Where is my weekend?!?",
+            "Error 404: weekend not found",
+            "Cannot go to friday: please try again later"
+        ],
+        "secondHalf": [
+            "Countdown to the weekend: mode on!",
+            "Keep pushing, it's almost done!",
+            "Friday is coming ...",
+            "You smell that? It's the weekend!",
+            "Keep calm and wait friday"
+        ],
+        "completed": [
+            "TGIF! (Thanks God Is Friday)",
+            "Congrats, you did it!",
+            "Shutdown everything! It's friday!",
+            "Friday loaded correctly!",
+            "Keep calm and it's friday!"
+        ]
+    }
+}

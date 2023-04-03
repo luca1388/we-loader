@@ -1,6 +1,8 @@
 import "./App.css";
 import { getFridayLoader } from "./date-utils";
+import { getRandomIntBetweenZeroAnd } from "./math-utils";
 import useInterval from "./hooks/useInterval";
+import messages from '../resources/i18n.json';
 import { useCallback, useEffect, useState } from "react";
 
 const REFRESH_INTERVAL = 10000;
@@ -28,6 +30,19 @@ function App() {
       maximumFractionDigits: 2,
     }).format(ratio);
   }, [ratio]);
+
+  const getMessage = () => {
+    if (ratio < 0.5) {
+      const index = getRandomIntBetweenZeroAnd(messages['firstHalf'].length)
+      return messages.firstHalf[index];
+    }
+    if (ratio < 1) {
+      const index = getRandomIntBetweenZeroAnd(messages['secondHalf'].length)
+      return messages.secondHalf[index];
+    }
+    const index = getRandomIntBetweenZeroAnd(messages['completed'].length)
+    return messages.completed[index];
+  };
 
   return (
     <div className="App">
