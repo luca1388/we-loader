@@ -3,20 +3,24 @@ import { getFridayLoader } from "./date-utils";
 import { getRandomIntBetweenZeroAnd } from "./math-utils";
 import useInterval from "./hooks/useInterval";
 import messages from "./i18n.json";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const REFRESH_INTERVAL = 10000;
 
 function App() {
   const [ratio, setRatio] = useState(0);
+  const messageRef = useRef(null);
   const [message, setMessage] = useState("");
 
   const computeCurrentRatio = useCallback(() => {
     const fridayLoader = getFridayLoader();
     setRatio(fridayLoader.percentageToFridayFromToday);
+    if (messageRef.current === null) {
+      messageRef.current = true;
+    }
   }, []);
 
-  const getMessage = () => {
+  const getMessage = useCallback(() => {
     if (ratio < 0.5) {
       const index = getRandomIntBetweenZeroAnd(
         messages.weekendMessages.firstHalf.length
@@ -33,24 +37,28 @@ function App() {
       messages.weekendMessages.completed.length
     );
     return messages.weekendMessages.completed[index];
-  };
+  }, [ratio]);
+  
+  useEffect(() => {
+    computeCurrentRatio();
+  }, [computeCurrentRatio]);
 
   useEffect(() => {
-    setMessage(getMessage());
-  }, []);
+    if (messageRef.current) {
+      messageRef.current = false;
+      setMessage(getMessage());
+    }
+  }, [getMessage]);
 
   useInterval(() => {
     computeCurrentRatio();
   }, REFRESH_INTERVAL);
 
-  useEffect(() => {
-    computeCurrentRatio();
-  }, [computeCurrentRatio]);
 
   const getPercentage = useCallback(() => {
     return new Intl.NumberFormat("default", {
       style: "percent",
-      minimumFractionDigits: 2,
+      minimumFractionDigits: ratio === 1 ? 0 : 2,
       maximumFractionDigits: 2,
     }).format(ratio);
   }, [ratio]);
