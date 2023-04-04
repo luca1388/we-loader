@@ -38,7 +38,7 @@ function App() {
     );
     return messages.weekendMessages.completed[index];
   }, [ratio]);
-  
+
   useEffect(() => {
     computeCurrentRatio();
   }, [computeCurrentRatio]);
@@ -54,7 +54,6 @@ function App() {
     computeCurrentRatio();
   }, REFRESH_INTERVAL);
 
-
   const getPercentage = useCallback(() => {
     return new Intl.NumberFormat("default", {
       style: "percent",
@@ -66,12 +65,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Weekend loader</h1>
-        <label htmlFor="weekend">{message}</label>
+        <h1 className="App-title">Weekend loader</h1>
+        <label htmlFor="weekend">
+          <h2 className="App-percentage">{getPercentage()}</h2>
+        </label>
         <progress id="weekend" max={1} value={ratio}>
           {getPercentage()}
         </progress>
-        <p>{getPercentage()}</p>
+        <p>{message}</p>
       </header>
     </div>
   );
