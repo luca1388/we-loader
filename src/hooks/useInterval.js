@@ -9,7 +9,7 @@ const useInterval = (callback, delay) => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [callback, delay]);
 };
 
 export default useInterval;

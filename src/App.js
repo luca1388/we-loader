@@ -3,6 +3,7 @@ import { getFridayLoader } from "./date-utils";
 import { getRandomIntBetweenZeroAnd } from "./math-utils";
 import useInterval from "./hooks/useInterval";
 import messages from "./i18n.json";
+import party from 'party-js';
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const REFRESH_INTERVAL = 10000;
@@ -10,6 +11,7 @@ const REFRESH_INTERVAL = 10000;
 function App() {
   const [ratio, setRatio] = useState(0);
   const messageRef = useRef(null);
+  const containerRef = useRef(null);
   const [message, setMessage] = useState("");
 
   const computeCurrentRatio = useCallback(() => {
@@ -62,8 +64,14 @@ function App() {
     }).format(ratio);
   }, [ratio]);
 
+  useEffect(() => {
+    if (ratio === 1) {
+      party.confetti(containerRef.current);
+    }
+  }, [ratio]);
+
   return (
-    <div className="App">
+    <div className="App" ref={containerRef}>
       <header className="App-header">
         <h1 className="App-title">Weekend loader</h1>
         <label htmlFor="weekend">

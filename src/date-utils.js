@@ -17,7 +17,7 @@ const getFridayDate = ({
   startingFridayHours = DEFAULT_FRIDAY_HOURS,
   startingFridayMinutes = DEFAULT_FRIDAY_MINUTES,
 }) => {
-  const { currentWeekDay, currentMonthDay, todayDate } = getCurrentDay();
+  const { currentWeekDay, currentMonthDay } = getCurrentDay();
   const fridayDate = new Date();
 
   fridayDate.setDate(currentMonthDay + (5 - currentWeekDay));
