@@ -11,8 +11,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
 
-  color: #84a07c;
+  /* color: #84a07c; */
   /* color: #006992; */
+  color: #f4d8cd;
 }
 
 .App-title {
@@ -24,4 +25,5 @@
 .App-percentage {
   color: #84a07c;
   margin: 0px;
+  font-size: 3em;
 }
