@@ -3,7 +3,8 @@ import { getFridayLoader } from "./date-utils";
 import { getRandomIntBetweenZeroAnd } from "./math-utils";
 import useInterval from "./hooks/useInterval";
 import messages from "./i18n.json";
-import party from 'party-js';
+// import party from "party-js";
+import { Fireworks } from "@fireworks-js/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const REFRESH_INTERVAL = 10000;
@@ -64,11 +65,11 @@ function App() {
     }).format(ratio);
   }, [ratio]);
 
-  useEffect(() => {
-    if (ratio === 1) {
-      party.confetti(containerRef.current);
-    }
-  }, [ratio]);
+  // useEffect(() => {
+  //   if (ratio === 1) {
+  //     party.confetti(containerRef.current);
+  //   }
+  // }, [ratio]);
 
   return (
     <div className="App" ref={containerRef}>
@@ -82,6 +83,23 @@ function App() {
         </progress>
         <p>{message}</p>
       </header>
+      {ratio === 1 && (
+        <Fireworks
+          options={{
+            rocketsPoint: {
+              min: 0,
+              max: 100,
+            },
+          }}
+          style={{
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            position: "fixed",
+          }}
+        />
+      )}
     </div>
   );
 }
