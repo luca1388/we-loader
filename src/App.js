@@ -10,7 +10,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const REFRESH_INTERVAL = 10000;
 
 function App() {
-  const [ratio, setRatio] = useState(0);
+  const [ratio, setRatio] = useState(null);
   const messageRef = useRef(null);
   const containerRef = useRef(null);
   const [message, setMessage] = useState("");
@@ -18,10 +18,15 @@ function App() {
   const computeCurrentRatio = useCallback(() => {
     const fridayLoader = getFridayLoader();
     setRatio(fridayLoader.percentageToFridayFromToday);
-    if (messageRef.current === null) {
-      messageRef.current = true;
-    }
   }, []);
+
+  useEffect(() => {
+    if (ratio !== null) {
+      if (messageRef.current === null) {
+        messageRef.current = true;
+      }
+    }
+  }, [ratio]);
 
   const getMessage = useCallback(() => {
     if (ratio < 0.5) {
