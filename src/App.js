@@ -63,11 +63,22 @@ function App() {
   }, REFRESH_INTERVAL);
 
   const getPercentage = useCallback(() => {
-    return new Intl.NumberFormat("default", {
+    const formattedPercentage = new Intl.NumberFormat("default", {
       style: "percent",
       minimumFractionDigits: ratio === 1 ? 0 : 2,
       maximumFractionDigits: 2,
     }).format(ratio);
+
+    const [integer, decimal] = formattedPercentage.replace("%", "").split(",");
+    const roundedValueBefore100 = new Intl.NumberFormat("default", {
+      style: "percent",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format("0.9999");
+
+    return integer === "100" && decimal === "00"
+      ? roundedValueBefore100
+      : formattedPercentage;
   }, [ratio]);
 
   // useEffect(() => {
