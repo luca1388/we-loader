@@ -1,5 +1,5 @@
 import "./App.css";
-import { getFridayLoader } from "./date-utils";
+import { getFridayLoader } from "./utils/date-utils";
 import useInterval from "./hooks/useInterval";
 
 import { useCallback, useEffect, useState } from "react";

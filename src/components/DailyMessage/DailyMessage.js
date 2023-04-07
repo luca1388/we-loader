@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getRandomIntBetweenZeroAnd } from "../../math-utils";
+import { getRandomIntBetweenZeroAnd } from "../../utils/math-utils";
 import messages from "../../i18n.json";
 
 const DailyMessage = ({ ratio }) => {
