@@ -52,11 +52,11 @@ function App() {
   }, [computeCurrentRatio]);
 
   useEffect(() => {
-    if (messageRef.current) {
+    if (messageRef.current || ratio === 1) {
       messageRef.current = false;
       setMessage(getMessage());
     }
-  }, [getMessage]);
+  }, [getMessage, ratio]);
 
   useInterval(() => {
     computeCurrentRatio();
