@@ -7,6 +7,9 @@ const DailyMessage = ({ ratio }) => {
   const [message, setMessage] = useState("");
 
   const getMessage = useCallback(() => {
+    if (ratio === null) {
+        return "";
+    }
     if (ratio < 0.5) {
       const index = getRandomIntBetweenZeroAnd(
         messages.weekendMessages.firstHalf.length

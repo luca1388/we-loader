@@ -20,6 +20,10 @@ const Progress = ({ value }) => {
       : formattedPercentage;
   }, [value]);
 
+  if (value === null) {
+    return;
+  }
+
   return (
     <>
       <label htmlFor="weekend">
