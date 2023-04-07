@@ -1,11 +1,11 @@
 import "./App.css";
-import { getFridayLoader } from "./utils/date-utils";
-import useInterval from "./hooks/useInterval";
+import { getFridayLoader } from "../../utils/date-utils";
+import useInterval from "../../hooks/useInterval";
 
 import { useCallback, useEffect, useState } from "react";
-import WinnerScreen from "./components/WinnerScreen/WinnerScreen";
-import Progress from "./components/Progress/Progress";
-import DailyMessage from "./components/DailyMessage/DailyMessage";
+import WinnerScreen from "../WinnerScreen/WinnerScreen";
+import Progress from "../Progress/Progress";
+import DailyMessage from "../DailyMessage/DailyMessage";
 
 const REFRESH_INTERVAL = 10000;
 
