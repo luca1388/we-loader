@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from './components/App/App';
+import App from './App';
 
 describe('GIVEN the page is rendered', () => {
   test('THEN should be a proper title', () => {
